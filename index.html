@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="A high-tech, colorful portfolio page with a carousel timeline and modal content."/>
+  <link rel="icon" href="Screenshot 2024-12-31 111854.png" type="image/x-icon" />
+  <title>My High-Tech Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Roboto Mono', monospace;
+      background: #fdfdfd;
+      color: #333;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      z-index: -1;
+      background: linear-gradient(120deg, #f0f4ff, #fff0f6, #f0fff4);
+      background-size: 600% 600%;
+      animation: pastelGradient 10s ease infinite;
+    }
+
+    @keyframes pastelGradient {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.8);
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      transition: background 0.3s ease;
+      border-bottom: 1px solid #ccc;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.95);
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #555;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #000;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #000;
+      text-transform: uppercase;
+      margin: 0;
+      line-height: 1.2;
+      position: relative;
+    }
+    .hero h1::before,
+    .hero h1::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0; 
+      right: 0;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+    }
+    .hero h1::before {
+      text-shadow: -2px 0 #0ff;
+      animation: glitch 2s infinite;
+    }
+    .hero h1::after {
+      text-shadow: 2px 0 #f0f;
+      animation: glitch 2s infinite alternate;
+    }
+
+    @keyframes glitch {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(10px, 9999px, 40px, 0); }
+      10% { clip: rect(30px, 9999px, 20px, 0); }
+      15% { clip: rect(20px, 9999px, 60px, 0); }
+      20% { clip: rect(5px, 9999px, 15px, 0); }
+      25% { clip: rect(40px, 9999px, 80px, 0); }
+      30% { clip: rect(30px, 9999px, 10px, 0); }
+      35% { clip: rect(50px, 9999px, 50px, 0); }
+      40% { clip: rect(10px, 9999px, 40px, 0); }
+      45% { clip: rect(40px, 9999px, 10px, 0); }
+      50% { clip: rect(30px, 9999px, 60px, 0); }
+      55% { clip: rect(5px, 9999px, 20px, 0); }
+      60% { clip: rect(20px, 9999px, 70px, 0); }
+      65% { clip: rect(30px, 9999px, 40px, 0); }
+      70% { clip: rect(40px, 9999px, 30px, 0); }
+      75% { clip: rect(10px, 9999px, 10px, 0); }
+      80% { clip: rect(5px, 9999px, 60px, 0); }
+      85% { clip: rect(20px, 9999px, 20px, 0); }
+      90% { clip: rect(30px, 9999px, 50px, 0); }
+      95% { clip: rect(40px, 9999px, 40px, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin: 20px 0 0;
+      color: #444;
+      max-width: 600px;
+    }
+
+    .hero a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background: #fff;
+      color: #00f;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      border: 2px solid #00f;
+      transition: background 0.3s, transform 0.3s;
+      border-radius: 5px;
+    }
+    .hero a:hover {
+      background: #00f;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      color: #333;
+    }
+    h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 2px;
+      background: #0ff;
+      margin: 20px auto 0;
+      opacity: 0.8;
+    }
+
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 30px;
+    }
+    .about img {
+      flex: 1 1 300px;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+    .about .content {
+      flex: 1 1 300px;
+    }
+    .about .content p {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    .portfolio-grid {
+  /* Turn off grid layout */
+  /* display: grid;
+  grid-template-columns: ... ;
+  ... */
+
+  /* Multi-column layout: 3 columns, 10px column gap */
+  column-count: 3;
+  column-gap: 35px;
+}
+
+.portfolio-item {
+  /* Ensure items don't break across columns */
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+
+  /* Keep each item in its own “box”: */
+  display: inline-block;
+  width: 100%;
+
+  /* Spacing below each box to separate them vertically */
+  margin-bottom: 10px;
+
+  /* (Optional) restore your box styling, for example: */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+  overflow: hidden;
+}
+.portfolio-item:hover {
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+    .portfolio-item img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.03);
+    }
+    .portfolio-item h3 {
+      margin-top: 15px;
+      font-size: 1.3rem;
+      color: #00c;
+    }
+    .portfolio-item p {
+      color: #555;
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      width: 90vw;
+      height: 90vh;
+      max-width: 1500px;
+      max-height: 900px;
+      background: #fff;
+      color: #333;
+      border-radius: 8px;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      flex: 0 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .modal-header button {
+      background: none;
+      border: none;
+      color: #333;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      flex: 1 1 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+
+    .modal-body img,
+    .modal-body iframe,
+    .modal-body video {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .gallery-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .gallery-controls button {
+      background: rgba(255,255,255,0.8);
+      border: none;
+      pointer-events: all;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: background 0.3s;
+    }
+    .gallery-controls button:hover {
+      background: rgba(255,255,255,1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 0.9rem;
+      color: #777;
+      background: #fdfdfd;
+    }
+    footer a {
+      color: #00f;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero">Home</a>
+  <a href="#about">About</a>
+  <a href="#portfolio">Work</a>
+</nav>
+
+<div class="hero" id="hero">
+  <h1 data-text="My Portfolio">My Portfolio</h1>
+  <p>Experience my best works from the 2020s!
+  </p>
+  <p>By: <strong>Maximilian Randklev</strong></p>
+  <a href="#about">Explore</a>
+</div>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about">
+    <!-- Lazy load applied: data-src + .lazyload class -->
+    <img data-src="IMG_3610.jpg" alt="Your Photo" class="lazyload">
+    <div class="content">
+      <p>
+        Hello! I'm Max Randklev and welcome to my portfolio. In here is the my favorite 45 projects that i've made over the years.
+        This site does not encompas everything I've ever done because i've made a lot of slop, so this shows some of my best works. 
+        I have always loved to create. Through the years my process refined and evolved to where it is today. 
+        Through this portfolio you can see that evolution to an extent. The portfolio is sorted from my favorite to my least favorite,
+        of my best works. Thanks for stopping by and I hope you enjoy your time looking at the history of me.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <h2>My Work</h2>
+  <div class="portfolio-grid" id="portfolioGrid">
+<!-- 1. Jon 'Bones' Jones edit -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/5OKo8tuIzAk'>
+  <!-- Lazy load applied with placeholder -->
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/icbcyZ7.png" 
+    alt="Jon 'Bones' Jones edit" 
+    class="lazyload">
+  <h3>Jon 'Bones' Jones edit</h3>
+  <p>This is the first edit I made with my new mac right after christmas!</p>
+</div>
+
+<!-- 2. Butcher, From the Boys, Designs -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/ButcherCard.png","Portload/ButcherCold.png","Portload/ButcherDark.png","Portload/ButcherMock Card.png","Portload/ButcherMock Cold.png","Portload/ButcherMock Dark.png","Portload/ButcherMock Reg.png","Portload/ButcherReg.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/ButcherCard.png" 
+    alt="Butcher, From the Boys, Designs" 
+    class="lazyload">
+  <h3>Butcher, From the Boys, Designs</h3>
+  <p>I really love these designs. They are just so cool. Butcher is a just a baller.</p>
+</div>
+
+<!-- 3. Alex 'Poaton' Pereira Designs -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/AlexPoaton Mock.png","Portload/AlexPoaton.png","Portload/Partial XRay Poaton Mock B&W.png","Portload/Partial XRay Poaton Mock Color.png","Portload/Partial XRay Poaton.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/pFTt8sp.jpeg" 
+    alt="Alex 'Poaton' Pereira Designs" 
+    class="lazyload">
+  <h3>Alex 'Poaton' Pereira Designs</h3>
+  <p>I like these a lot and they preceeded an era of many UFC designs.</p>
+</div>
+
+<!-- 4. Ghost Cartoon 3D model -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/Ghost Helmet_2.png","Portload/Ghost Helmet_3.png","Portload/Ghost Helmet_4.png","Portload/Ghost Helmet.png","Portload/Ghost_Color.png","Portload/Ghost_Color1.png","Portload/Ghost_Color2.png","Portload/Ghost_Color3.png","Portload/Ghost_Color4.png","Portload/Ghost_Color5.png","Portload/Ghost_Pieces.png","Portload/Ghost_Pieces1.png","Portload/Ghost_Pieces2.png","Portload/Ghost_Pieces3.png","Portload/Ghost_Pieces4.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/Ghost_Color4.png" 
+    alt="Ghost Cartoon 3D model" 
+    class="lazyload">
+  <h3>Ghost Cartoon 3D model</h3>
+  <p>I loved the Ghost character in MW19 and MW22, so I created him in 3d. I wasn't good enough to do realism so I went cartoony. I think it came out great!</p>
+</div>
+
+<!-- 5. Matrix Test Prep -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/HkPmvJo.png","https://i.imgur.com/3rvo7kS.png","https://i.imgur.com/NZtDPTZ.png","https://i.imgur.com/356khFb.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/IEBo91m.png" 
+    alt="Matrix Test Prep" 
+    class="lazyload">
+  <h3>Matrix Test Prep</h3>
+  <p>My biggest buisness yet. An SAT platform that trains users to increase their scores. I initially made this so I could increase my score but then I decided to start selling it as well. As of now this site is live at: matrixtestprep.com</p>
+</div>
+
+<!-- 6. Connor Evolution -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/Connor Evolution.png","Portload/ConnorTVMock.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/Connor Evolution.png" 
+    alt="Connor Evolution" 
+    class="lazyload">
+  <h3>Connor Evolution</h3>
+  <p>My first UFC design. I really like it, it was hard to make any designs that topped it.</p>
+</div>
+
+<!-- 7. Can't Cry Shirt -->
+<div class="portfolio-item"
+    data-type="photo"
+    data-content='Portload/EatPlate.png'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/EatPlate.png" 
+    alt="Can't Cry Shirt" 
+    class="lazyload">
+  <h3>Can't Cry Shirt</h3>
+  <p>While its reletively low effort I love this shirt. The quote is just such a good quote.</p>
+</div>
+
+<!-- 8. Wreck Web designs -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/WreckWeb Mock Invert.png","Portload/WreckWeb Mock.png","Portload/WreckWeb.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/WreckWeb.png" 
+    alt="Wreck Web designs" 
+    class="lazyload">
+  <h3>Wreck Web designs</h3>
+  <p>Love these logos. I would totaly make these shirts if I had spare money. I would make them just so I could wear them. I dont even need to sell them.</p>
+</div>
+
+<!-- 9. Shirt Wreck Mocks -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/ShirtWreckTee GhostShip Mock Invert.png","Portload/ShirtWreckTee GhostShip Mock.png","Portload/ShirtWreckTee GhostShip.png","Portload/ShirtWreckTee Mock Black.png","Portload/ShirtWreckTee Mock White.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/ShirtWreckTee GhostShip.png" 
+    alt="Shirt Wreck Mocks" 
+    class="lazyload">
+  <h3>Shirt Wreck Mocks</h3>
+  <p>All the mocks I had made prior to this point I planned to sell under the brand of Shirt Wreck. I never got around to doing this.</p>
+</div>
+
+<!-- 10. Dustin Poirier designs -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/Poirier Inverted Mock.jpg","Portload/Poirier1.png","Portload/PoirierMock.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/Poirier1.png" 
+    alt="Dustin Poirier designs" 
+    class="lazyload">
+  <h3>Dustin Poirier designs</h3>
+  <p>Made this right before he fought islam mahckichev. What a great fight, DP really took him to his limits. Islam is just too good though.</p>
+</div>
+
+<!-- 11. I Ate and Burned off a Cake in 5 Hours! -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/ddfLQKh5o4s'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/oN0eSZA.png" 
+    alt="I Ate and Burned off a Cake in 5 Hours!" 
+    class="lazyload">
+  <h3>I Ate and Burned off a Cake in 5 Hours!</h3>
+  <p>Probably one of my best shorts ever. However, it falls short with the large amount of timelapses.</p>
+</div>
+
+<!-- 12. Sugar Sean design -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/SugarSean Messy Mock.png","Portload/SugaSeanmESSY.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/SugaSeanmESSY.png" 
+    alt="Sugar Sean design" 
+    class="lazyload">
+  <h3>Sugar Sean design</h3>
+  <p>I really like these. They give me a spider verse type of feel.</p>
+</div>
+
+<!-- 13. Jamie Tart, from Ted Lasso, Design -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/JamieTart NVG Mock.png","Portload/JamieTart NVG.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/JamieTart NVG.png" 
+    alt="Jamie Tart, from Ted Lasso, Design" 
+    class="lazyload">
+  <h3>Jamie Tart, from Ted Lasso, Design</h3>
+  <p>I love Ted Lasso, jamie tart arcs out so well. This design was good but not great imo.</p>
+</div>
+
+<!-- 14. MVP Max -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/Ioc3bmH.png","https://i.imgur.com/AQUKHTE.jpeg","blob:https://imgur.com/a3e2b0dd-503e-4533-a75d-1891288f8c07","https://i.imgur.com/Va25LGx.png","https://i.imgur.com/vnciqM6.png","https://i.imgur.com/ei4YcWr.png","https://i.imgur.com/crVMHTN.png","https://i.imgur.com/4yDbfZy.png","https://i.imgur.com/OYXRwna.png","https://i.imgur.com/C3zDUqy.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/C3zDUqy.png" 
+    alt="MVP Max" 
+    class="lazyload">
+  <h3>MVP Max</h3>
+  <p>The MVP Max buisness was my first time stepping into the real buisness world. I did predictive modeling for sports betting, and advertised via twitter. It was a great experiment in pushing my stress tolerance.</p>
+</div>
+
+<!-- 15. Symbyote Test Edit -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/i_0tqTYQfI4'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/hoznvAw.png" 
+    alt="Symbyote Test Edit" 
+    class="lazyload">
+  <h3>Symbyote Test Edit</h3>
+  <p>This was the first thing I made on my computer after getting it for christmas. It lead to the jon jones edit. It was inspired by a guy on TikTok called 'Symbyote'.</p>
+</div>
+
+<!-- 16. Leon Edwards design -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/LeonNeverGiveUp Mock.png","Portload/LeonNeverGiveUp.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/LeonNeverGiveUp.png" 
+    alt="Leon Edwards design" 
+    class="lazyload">
+  <h3>Leon Edwards design</h3>
+  <p>One of the greatest storylines in a fight ever, from the announcers to the acutal kick it was so good it couldn't have been scripted if they wanted to.</p>
+</div>
+
+<!-- 17. Walking Man -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/Man Walk Mock.png","Portload/Man Walk.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/Man Walk.png" 
+    alt="Walking Man" 
+    class="lazyload">
+  <h3>Walking Man</h3>
+  <p>Created from a picutre of Andrew Garfields spider man I like this picutre a lot. It was one of my first times doing this effect.</p>
+</div>
+
+<!-- 18. Gogopixel Trailer -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/9R3idsoq3yI'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/YmLI2H1.png" 
+    alt="Gogopixel Trailer" 
+    class="lazyload">
+  <h3>Gogopixel Trailer</h3>
+  <p>By far my favorite thing I made on this channel. I love movies and I feel like the trailer style is just so satisfying and the pacing is just so good!</p>
+</div>
+
+<!-- 19. 505 Montage -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/_3vGvivNdRI'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/ldp8RG1.png" 
+    alt="505 Montage" 
+    class="lazyload">
+  <h3>505 Montage</h3>
+  <p>My 3rd favorite behind Gogopixel Trailer and Lions inside. I still love that song.</p>
+</div>
+
+<!-- 20. I became an NPC for 24 hours -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/fPxpQgsN2Ik'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/LPQgYUt.png" 
+    alt="I became an NPC for 24 hours" 
+    class="lazyload">
+  <h3>I became an NPC for 24 hours</h3>
+  <p>One of my favorite videos I've ever made. I loved doing this with my friends. I want to do this again some day. Also I really like the thumbnail for this one.</p>
+</div>
+
+<!-- 21. Lions Inside Montage -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/E-EZdf4kN-s'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/cRSsGNP.png" 
+    alt="Lions Inside Montage" 
+    class="lazyload">
+  <h3>Lions Inside Montage</h3>
+  <p>For me this one is Top 2 edits I made on this channel. I really love the end, I miss those days. One of the only things in life I regret is the amount of distance I put between my friends and myself.</p>
+</div>
+
+<!-- 22. Enemy Montage -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/A4Q6MCQ1P2c'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/OaGIIal.png" 
+    alt="Enemy Montage" 
+    class="lazyload">
+  <h3>Enemy Montage</h3>
+  <p>The song is better than the edit. Arcane is and will always be the best TV of all time.</p>
+</div>
+
+<!-- 23. 9 Second Ace -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/xXmBWRpSXi0'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/Mxql0gR.png" 
+    alt="9 Second Ace" 
+    class="lazyload">
+  <h3>9 Second Ace</h3>
+  <p>One of my best clips, not insane, but just a great clip. Brady and cole do great reactions for it.</p>
+</div>
+
+<!-- 24. Minecrafts fastest path to endgame! -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/LSQWQ8sqBKI'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/U7WNMnQ.png" 
+    alt="Minecrafts fastest path to endgame!" 
+    class="lazyload">
+  <h3>Minecrafts fastest path to endgame!</h3>
+  <p>Alright video. The other minecraft video is better imo.</p>
+</div>
+
+<!-- 25. Max Holloway -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/MaxHolloway Mock.png","Portload/MaxHolloway.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/MaxHolloway.png" 
+    alt="Max Holloway" 
+    class="lazyload">
+  <h3>Max Holloway</h3>
+  <p>I literally had to make this after what he did to justin gaethje, such a badass.</p>
+</div>
+
+<!-- 26. The hardest thing I have ever done. -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/toPezhrFYlg'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/LRDTkbl.png" 
+    alt="The hardest thing I have ever done." 
+    class="lazyload">
+  <h3>The hardest thing I have ever done.</h3>
+  <p>I have never done anything thats remotely as hard as this was. I really wish I made the video better because there was a great story to be told and I didn't tell it to the best of my ability.</p>
+</div>
+
+<!-- 27. Fortnite Maps Banners 3D Render -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["Portload/Tunnel3.1.jpg","Portload/tunnelmap.jpg","Portload/ZoneWarsPro_1.jpg","Portload/ZoneWarsPro_sq.jpg"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/Tunnel3.1.jpg" 
+    alt="Fortnite Maps Banners 3D Render" 
+    class="lazyload">
+  <h3>Fortnite Maps Banners 3D Render</h3>
+  <p>These were made for fortnite maps I made. I ended up making a total of $15 from these maps. I had a total of 600 players for one day that month. It would have been good money if I had player retention.</p>
+</div>
+
+<!-- 28. Sports Car Render Test -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/mWm4JUN.png","https://i.imgur.com/6GgMWQL.jpeg"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/mWm4JUN.png" 
+    alt="Sports Car Render Test" 
+    class="lazyload">
+  <h3>Sports Car Render Test</h3>
+  <p>It was just a quick test, but I really liked how it turned out, hence the phone background.</p>
+</div>
+
+<!-- 29. Industry Baby Montage -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/rbujiHeArg4'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/FAWFFj6.png" 
+    alt="Industry Baby Montage" 
+    class="lazyload">
+  <h3>Industry Baby Montage</h3>
+  <p>This edit was very important to my development and this edit is the first time I used a bunch of techniques that get used a lot in later edits.</p>
+</div>
+
+<!-- 30. Whos Faster Me or A Storm? -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/RH0_VZTnJI4'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/2dYYYLg.png" 
+    alt="Whos Faster Me or A Storm?" 
+    class="lazyload">
+  <h3>Whos Faster Me or A Storm?</h3>
+  <p>This video was dumb, I tried to make it good, but it was more so me trying to meet a video quota not make good content.</p>
+</div>
+
+<!-- 31. Thumbnails for MaxRan1, my fitness channel -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/gf7OFEI.jpeg","https://i.imgur.com/uyeSrgp.jpeg","https://i.imgur.com/UaVhsgu.jpeg","https://i.imgur.com/SQlkxsh.jpeg"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/UaVhsgu.jpeg" 
+    alt="Thumbnails for MaxRan1, my fitness channel" 
+    class="lazyload">
+  <h3>Thumbnails for MaxRan1, my fitness channel</h3>
+  <p>I loved this channel and am still proud of what I made there. I could do better but at the time it was my best.</p>
+</div>
+
+<!-- 32. Connor Mcgregor, Power -->
+<div class="portfolio-item"
+    data-type="photo"
+    data-content='Portload/Power.png'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="Portload/Power.png" 
+    alt="Connor Mcgregor, Power" 
+    class="lazyload">
+  <h3>Connor Mcgregor, Power</h3>
+  <p>Most of my UFC designs are made because of the amazing storylines within the sport. This design was made on the same accord.</p>
+</div>
+
+<!-- 33. Greatness, Eliud Kipchoge -->
+<div class="portfolio-item"
+    data-type="photo"
+    data-content='https://i.imgur.com/usWksqy.jpeg'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/usWksqy.jpeg" 
+    alt="Greatness, Eliud Kipchoge" 
+    class="lazyload">
+  <h3>Greatness, Eliud Kipchoge</h3>
+  <p>I have so much respect for Eliud Kipchoge, he is a great dude, hence why I made this image.</p>
+</div>
+
+<!-- 34. Encore Montage -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/yXBEVa4xL4g'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/ilT11ri.png" 
+    alt="Encore Montage" 
+    class="lazyload">
+  <h3>Encore Montage</h3>
+  <p>I made this for spencer, I do not like that song. I think the edit turned out alright though.</p>
+</div>
+
+<!-- 35. Max's Stats -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/Im70MMY.jpeg","https://i.imgur.com/pTwiIXx.jpeg"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/VMO6uts.jpeg" 
+    alt="Max's Stats" 
+    class="lazyload">
+  <h3>Max's Stats</h3>
+  <p>I never even started this project, but I really like the logos I made. Great color scheme and textures. Also cant go wrong with the ghost mask.</p>
+</div>
+
+<!-- 36. Rust banners -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/vrH248i.png","https://i.imgur.com/NRCGGfj.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/Vq33tIa.png" 
+    alt="Rust banners" 
+    class="lazyload">
+  <h3>Rust banners</h3>
+  <p>Made these for a rust channel that I made, I was going to make rust movies but I sucked too much for the stories to be good ever.</p>
+</div>
+
+<!-- 37. Thumbnails for my rust movie channel -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/R5peYDW.jpeg","https://i.imgur.com/X2AwE3K.jpeg","https://i.imgur.com/i57mONb.jpeg"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/co2Ce5d.jpeg" 
+    alt="Thumbnails for my rust movie channel" 
+    class="lazyload">
+  <h3>Thumbnails for my rust movie channel</h3>
+  <p>These thumbnails weren't horrible. I like them but they really aren't great.</p>
+</div>
+
+<!-- 38. The Top P -->
+<div class="portfolio-item"
+    data-type="photo"
+    data-content='https://i.imgur.com/glTS88D.jpeg'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/glTS88D.jpeg" 
+    alt="The Top P" 
+    class="lazyload">
+  <h3>The Top P</h3>
+  <p>This was a license plate I made for portman, still think that this is funny.</p>
+</div>
+
+<!-- 39. I stood still for 24 hours -->
+<div class="portfolio-item"
+    data-type="photo"
+    data-content='https://i.imgur.com/LicC80Z.jpeg'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/L5WFFNW.jpeg" 
+    alt="I stood still for 24 hours" 
+    class="lazyload">
+  <h3>I stood still for 24 hours</h3>
+  <p>I tried to make this video but didn't end up finishing it. I stood still for 11 hours, then was tired so I went to bed. I decided that because I didn't finish the challenge to just scrap the video. Waste of time? Maybe.</p>
+</div>
+
+<!-- 40. My favorite photo ever -->
+<div class="portfolio-item"
+    data-type="photo"
+    data-content='IMG_1285.JPG'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="IMG_1285.JPG" 
+    alt="My favorite photo ever" 
+    class="lazyload">
+  <h3>My favorite photo ever</h3>
+  <p>Took this on a hike to the 'bamboo forest' with portman on one of the rainest days of the year. Never had a more fun hike.</p>
+</div>
+
+<!-- 41. First picture with my first camera -->
+<div class="portfolio-item"
+    data-type="photo"
+    data-content='https://i.imgur.com/HdzypAm.jpeg'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/HdzypAm.jpeg" 
+    alt="First picture with my first camera" 
+    class="lazyload">
+  <h3>First picture with my first camera</h3>
+  <p>For a first picture, I think that this came out great!</p>
+</div>
+
+<!-- 42. The MCF Thumbnails -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/HkPmvJo.png","https://i.imgur.com/3rvo7kS.png","https://i.imgur.com/NZtDPTZ.png","https://i.imgur.com/356khFb.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/IEBo91m.png" 
+    alt="Matrix Test Prep" 
+    class="lazyload">
+  <h3>Matrix Test Prep</h3>
+  <p>My biggest buisness yet. An SAT platform that trains users to increase their scores. I initially made this so I could increase my score but then I decided to start selling it as well. As of now this site is live at: matrixtestprep.com</p>
+</div>
+
+<!-- 43. MW19 Thumbnails -->
+<div class="portfolio-item"
+    data-type="gallery"
+    data-content='["https://i.imgur.com/eqvRlgQ.jpeg","https://i.imgur.com/pqMAqd6.jpeg","https://i.imgur.com/QR8B7yb.jpeg","https://i.imgur.com/L3qlQfV.png"]'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/qV86SF9.jpeg" 
+    alt="MW19 Thumbnails" 
+    class="lazyload">
+  <h3>MW19 Thumbnails</h3>
+  <p>A set of thumbnail for a short lived channel where I made commentary videos while playing MW2019.</p>
+</div>
+
+<!-- 44. Mac Miller COD cold war edit -->
+<div class="portfolio-item"
+    data-type="video"
+    data-content='https://www.youtube.com/embed/qIrbJyud_-A'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/p7V7PKX.png" 
+    alt="Mac Miller COD cold war edit" 
+    class="lazyload">
+  <h3>Mac Miller COD cold war edit</h3>
+  <p>One of the first times I did cinematics inside an edit. I really like this edit to this day.</p>
+</div>
+
+<!-- 45. MW22 Thumbnail -->
+<div class="portfolio-item"
+    data-type="photo"
+    data-content='https://i.imgur.com/Iq2UK86.jpeg'>
+  <img 
+    src="Portload/Placeholder.png" 
+    data-src="https://i.imgur.com/Iq2UK86.jpeg" 
+    alt="MW22 Thumbnail" 
+    class="lazyload">
+  <h3>MW22 Thumbnail</h3>
+  <p>This was a fun video to film, but the thumbnail didn't get much love.</p>
+</div>
+
+  </div>
+</section>
+
+<footer>
+  © 2024 Maximilian Randklev. Coded and create with my own two hands. 
+  <br><a href="#hero">Back to top</a>
+</footer>
+
+<!-- Modal HTML / JS for clickable items -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button id="modalClose">&times;</button>
+    </div>
+    <div class="modal-body"></div>
+    <div class="gallery-controls" id="galleryControls" style="display:none;">
+      <button id="galleryPrev">←</button>
+      <button id="galleryNext">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- 1) Round-robin reorder script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const grid = document.getElementById("portfolioGrid");
+    if (!grid) return; // In case there's no grid
+  
+    // Collect all .portfolio-item children
+    const items = Array.from(grid.querySelectorAll(".portfolio-item"));
+  
+    // How many columns do you want?
+    const columns = 3;
+  
+    // We'll build arrays for each column
+    const colArrays = Array.from({ length: columns }, () => []);
+  
+    // Distribute items in round-robin fashion:
+    // item #1 → col0, item #2 → col1, item #3 → col2,
+    // item #4 → col0, ...
+    items.forEach((item, i) => {
+      const colIndex = i % columns;
+      colArrays[colIndex].push(item);
+    });
+  
+    // Clear the existing items from the DOM
+    grid.innerHTML = "";
+  
+    // Re-append them column by column in the new order
+    // So the final DOM is #1,#4,#7,... in col0 first,
+    // which multi-column will place top-to-bottom in the first column,
+    // then #2,#5,#8 in the second column, etc.
+    colArrays.forEach(col => {
+      col.forEach(item => grid.appendChild(item));
+    });
+  });
+  </script>
+  
+  <!-- 2) Existing script for modal functionality -->
+  <script>
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+    const modalBody = document.querySelector('.modal-body');
+    const galleryControls = document.getElementById('galleryControls');
+    const galleryPrev = document.getElementById('galleryPrev');
+    const galleryNext = document.getElementById('galleryNext');
+  
+    let galleryItems = [];
+    let galleryIndex = 0;
+  
+    function openModal(itemType, content) {
+      modalBody.innerHTML = '';
+      galleryControls.style.display = 'none';
+      galleryItems = [];
+      galleryIndex = 0;
+  
+      if (itemType === 'gallery') {
+        // If it's already parsed, use that; otherwise parse the string.
+        if (typeof content === 'string') {
+          galleryItems = JSON.parse(content);
+        } else {
+          galleryItems = content;
+        }
+        showGalleryItem();
+        if (galleryItems.length > 1) {
+          galleryControls.style.display = 'flex';
+        }
+      }
+      else if (itemType === 'video' || itemType === 'photo') {
+        showSingleItem(content);
+      }
+      else {
+        // Fallback
+        showSingleItem(content);
+      }
+  
+      modalOverlay.classList.add('active');
+    }
+  
+    function showGalleryItem() {
+      modalBody.innerHTML = '';
+      if (galleryItems.length === 0) return;
+      const currentItem = galleryItems[galleryIndex];
+      showSingleItem(currentItem);
+    }
+  
+    function showSingleItem(url) {
+      modalBody.innerHTML = '';
+  
+      // YouTube embed:
+      if (url.includes('youtube.com/embed') || url.includes('youtu.be')) {
+        const iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;');
+        iframe.allowFullscreen = true;
+        modalBody.appendChild(iframe);
+      }
+      // Google Drive embed
+      else if (url.includes('drive.google.com/file/d/')) {
+        const iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;');
+        iframe.allowFullscreen = true;
+        modalBody.appendChild(iframe);
+      }
+      // Direct video file
+      else if (/\.(mp4|mov|webm|ogg)$/i.test(url)) {
+        const video = document.createElement('video');
+        video.src = url;
+        video.controls = true;
+        modalBody.appendChild(video);
+      }
+      // Image extension
+      else if (/\.(gif|jpg|jpeg|png|webp)$/i.test(url)) {
+        const img = document.createElement('img');
+        img.src = url;
+        modalBody.appendChild(img);
+      }
+      else {
+        // Fallback: embed in iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;');
+        iframe.allowFullscreen = true;
+        modalBody.appendChild(iframe);
+      }
+    }
+  
+    galleryPrev.addEventListener('click', () => {
+      galleryIndex--;
+      if (galleryIndex < 0) galleryIndex = galleryItems.length - 1;
+      showGalleryItem();
+    });
+  
+    galleryNext.addEventListener('click', () => {
+      galleryIndex++;
+      if (galleryIndex >= galleryItems.length) galleryIndex = 0;
+      showGalleryItem();
+    });
+  
+    modalClose.addEventListener('click', () => {
+      modalOverlay.classList.remove('active');
+      modalBody.innerHTML = '';
+    });
+  
+    // Close if clicking outside modal content
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+        modalBody.innerHTML = '';
+      }
+    });
+  
+    // Attach modal triggers
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const type = item.getAttribute('data-type');
+        let content = item.getAttribute('data-content');
+  
+        if (type === 'gallery') {
+          try {
+            content = JSON.parse(content);
+          } catch (e) {
+            console.error('Failed to parse gallery content:', e);
+          }
+        }
+        openModal(type, content);
+      });
+    });
+  </script>
+  
+  <!-- 3) Lazy Loading Script -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const lazyImages = document.querySelectorAll("img.lazyload");
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1 // triggers when 10% of the image is visible
+    };
+  
+    function onIntersection(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const dataSrc = img.getAttribute("data-src");
+          if (dataSrc) {
+            img.src = dataSrc;
+            img.removeAttribute("data-src");
+          }
+          observer.unobserve(img);
+        }
+      });
+    }
+  
+    const observer = new IntersectionObserver(onIntersection, observerOptions);
+  
+    lazyImages.forEach(image => {
+      observer.observe(image);
+    });
+  });
+  </script>  
+</body>
+</html>
