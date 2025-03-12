@@ -746,6 +746,46 @@
         transform: translateX(-50%);
       }
     }
+
+    /* Form styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(45, 70, 185, 0.1);
+    }
+    
+    form .btn {
+      margin-top: 10px;
+    }
+
+    @media (min-width: 768px) {
+      form {
+        max-width: 600px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -801,7 +841,7 @@
     <button class="filter-btn active" data-filter="all">All Projects</button>
     <button class="filter-btn" data-filter="design">Design</button>
     <button class="filter-btn" data-filter="video">Video</button>
-    <button class="filter-btn" data-filter="photo">Photography</button>
+    <button class="filter-btn" data-filter="business">Business</button>
     <button class="filter-btn" data-filter="3d">3D Modeling</button>
   </div>
   
@@ -859,7 +899,7 @@
     </div>
 
     <!-- 5. Matrix Test Prep -->
-    <div class="portfolio-item" data-type="gallery" data-filter="design"
+    <div class="portfolio-item" data-type="gallery" data-filter="business"
         data-content='["https://i.imgur.com/HkPmvJo.png","https://i.imgur.com/3rvo7kS.png","https://i.imgur.com/NZtDPTZ.png","https://i.imgur.com/356khFb.png"]'>
       <div class="portfolio-item-img">
         <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/IEBo91m.png" alt="Matrix Test Prep" class="lazyload">
@@ -871,7 +911,6 @@
       </div>
     </div>
 
-    <!-- Continue with the rest of your portfolio items... -->
     <!-- 6. Connor Evolution -->
     <div class="portfolio-item" data-type="gallery" data-filter="design"
         data-content='["Portload/Connor Evolution.png","Portload/ConnorTVMock.png"]'>
@@ -898,8 +937,500 @@
       </div>
     </div>
 
-    <!-- Continue adding the remaining items with the same pattern -->
-    <!-- For brevity, I'm not including all 45 items here, but you should add them all with this structure -->
+    <!-- 8. Wreck Web designs -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["Portload/WreckWeb Mock Invert.png","Portload/WreckWeb Mock.png","Portload/WreckWeb.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/WreckWeb.png" alt="Wreck Web designs" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Wreck Web designs</h3>
+        <p>Love these logos. I would totaly make these shirts if I had spare money. I would make them just so I could wear them. I dont even need to sell them.</p>
+      </div>
+    </div>
+
+    <!-- 9. Shirt Wreck Mocks -->
+    <div class="portfolio-item" data-type="gallery" data-filter="business"
+        data-content='["Portload/ShirtWreckTee GhostShip Mock Invert.png","Portload/ShirtWreckTee GhostShip Mock.png","Portload/ShirtWreckTee GhostShip.png","Portload/ShirtWreckTee Mock Black.png","Portload/ShirtWreckTee Mock White.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/ShirtWreckTee GhostShip.png" alt="Shirt Wreck Mocks" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design / Business</div>
+        <h3>Shirt Wreck Mocks</h3>
+        <p>All the mocks I had made prior to this point I planned to sell under the brand of Shirt Wreck. I never got around to doing this.</p>
+      </div>
+    </div>
+
+    <!-- 10. Dustin Poirier designs -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["Portload/Poirier Inverted Mock.jpg","Portload/Poirier1.png","Portload/PoirierMock.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/Poirier1.png" alt="Dustin Poirier designs" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Dustin Poirier designs</h3>
+        <p>Made this right before he fought islam mahckichev. What a great fight, DP really took him to his limits. Islam is just too good though.</p>
+      </div>
+    </div>
+
+    <!-- 11. I Ate and Burned off a Cake in 5 Hours! -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/ddfLQKh5o4s'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/oN0eSZA.png" alt="I Ate and Burned off a Cake in 5 Hours!" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>I Ate and Burned off a Cake in 5 Hours!</h3>
+        <p>Probably one of my best shorts ever. However, it falls short with the large amount of timelapses.</p>
+      </div>
+    </div>
+
+    <!-- 12. Sugar Sean design -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["Portload/SugarSean Messy Mock.png","Portload/SugaSeanmESSY.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/SugaSeanmESSY.png" alt="Sugar Sean design" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Sugar Sean design</h3>
+        <p>I really like these. They give me a spider verse type of feel.</p>
+      </div>
+    </div>
+
+    <!-- 13. Jamie Tart, from Ted Lasso, Design -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["Portload/JamieTart NVG Mock.png","Portload/JamieTart NVG.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/JamieTart NVG.png" alt="Jamie Tart, from Ted Lasso, Design" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Jamie Tart, from Ted Lasso, Design</h3>
+        <p>I love Ted Lasso, jamie tart arcs out so well. This design was good but not great imo.</p>
+      </div>
+    </div>
+
+    <!-- 14. MVP Max -->
+    <div class="portfolio-item" data-type="gallery" data-filter="business"
+        data-content='["https://i.imgur.com/Ioc3bmH.png","https://i.imgur.com/AQUKHTE.jpeg","blob:https://imgur.com/a3e2b0dd-503e-4533-a75d-1891288f8c07","https://i.imgur.com/Va25LGx.png","https://i.imgur.com/vnciqM6.png","https://i.imgur.com/ei4YcWr.png","https://i.imgur.com/crVMHTN.png","https://i.imgur.com/4yDbfZy.png","https://i.imgur.com/OYXRwna.png","https://i.imgur.com/C3zDUqy.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/C3zDUqy.png" alt="MVP Max" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Business</div>
+        <h3>MVP Max</h3>
+        <p>The MVP Max buisness was my first time stepping into the real buisness world. I did predictive modeling for sports betting, and advertised via twitter. It was a great experiment in pushing my stress tolerance.</p>
+      </div>
+    </div>
+
+    <!-- 15. Symbyote Test Edit -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/i_0tqTYQfI4'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/hoznvAw.png" alt="Symbyote Test Edit" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Symbyote Test Edit</h3>
+        <p>This was the first thing I made on my computer after getting it for christmas. It lead to the jon jones edit. It was inspired by a guy on TikTok called 'Symbyote'.</p>
+      </div>
+    </div>
+
+    <!-- 16. Leon Edwards design -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["Portload/LeonNeverGiveUp Mock.png","Portload/LeonNeverGiveUp.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/LeonNeverGiveUp.png" alt="Leon Edwards design" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Leon Edwards design</h3>
+        <p>One of the greatest storylines in a fight ever, from the announcers to the acutal kick it was so good it couldn't have been scripted if they wanted to.</p>
+      </div>
+    </div>
+
+    <!-- 17. Walking Man -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["Portload/Man Walk Mock.png","Portload/Man Walk.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/Man Walk.png" alt="Walking Man" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Walking Man</h3>
+        <p>Created from a picutre of Andrew Garfields spider man I like this picutre a lot. It was one of my first times doing this effect.</p>
+      </div>
+    </div>
+
+    <!-- 18. Gogopixel Trailer -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/9R3idsoq3yI'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/YmLI2H1.png" alt="Gogopixel Trailer" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Gogopixel Trailer</h3>
+        <p>By far my favorite thing I made on this channel. I love movies and I feel like the trailer style is just so satisfying and the pacing is just so good!</p>
+      </div>
+    </div>
+
+    <!-- 19. 505 Montage -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/_3vGvivNdRI'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/ldp8RG1.png" alt="505 Montage" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>505 Montage</h3>
+        <p>My 3rd favorite behind Gogopixel Trailer and Lions inside. I still love that song.</p>
+      </div>
+    </div>
+
+    <!-- 20. I became an NPC for 24 hours -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/fPxpQgsN2Ik'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/LPQgYUt.png" alt="I became an NPC for 24 hours" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>I became an NPC for 24 hours</h3>
+        <p>One of my favorite videos I've ever made. I loved doing this with my friends. I want to do this again some day. Also I really like the thumbnail for this one.</p>
+      </div>
+    </div>
+
+    <!-- 21. Lions Inside Montage -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/E-EZdf4kN-s'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/cRSsGNP.png" alt="Lions Inside Montage" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Lions Inside Montage</h3>
+        <p>For me this one is Top 2 edits I made on this channel. I really love the end, I miss those days. One of the only things in life I regret is the amount of distance I put between my friends and myself.</p>
+      </div>
+    </div>
+
+    <!-- 22. Enemy Montage -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/A4Q6MCQ1P2c'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/OaGIIal.png" alt="Enemy Montage" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Enemy Montage</h3>
+        <p>The song is better than the edit. Arcane is and will always be the best TV of all time.</p>
+      </div>
+    </div>
+
+    <!-- 23. 9 Second Ace -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/xXmBWRpSXi0'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/Mxql0gR.png" alt="9 Second Ace" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>9 Second Ace</h3>
+        <p>One of my best clips, not insane, but just a great clip. Brady and cole do great reactions for it.</p>
+      </div>
+    </div>
+
+    <!-- 24. Minecrafts fastest path to endgame! -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/LSQWQ8sqBKI'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/U7WNMnQ.png" alt="Minecrafts fastest path to endgame!" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Minecrafts fastest path to endgame!</h3>
+        <p>Alright video. The other minecraft video is better imo.</p>
+      </div>
+    </div>
+
+    <!-- 25. Max Holloway -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["Portload/MaxHolloway Mock.png","Portload/MaxHolloway.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/MaxHolloway.png" alt="Max Holloway" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Max Holloway</h3>
+        <p>I literally had to make this after what he did to justin gaethje, such a badass.</p>
+      </div>
+    </div>
+
+    <!-- 26. The hardest thing I have ever done. -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/toPezhrFYlg'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/LRDTkbl.png" alt="The hardest thing I have ever done." class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>The hardest thing I have ever done.</h3>
+        <p>I have never done anything thats remotely as hard as this was. I really wish I made the video better because there was a great story to be told and I didn't tell it to the best of my ability.</p>
+      </div>
+    </div>
+
+    <!-- 27. Fortnite Maps Banners 3D Render -->
+    <div class="portfolio-item" data-type="gallery" data-filter="3d"
+        data-content='["Portload/Tunnel3.1.jpg","Portload/tunnelmap.jpg","Portload/ZoneWarsPro_1.jpg","Portload/ZoneWarsPro_sq.jpg"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/Tunnel3.1.jpg" alt="Fortnite Maps Banners 3D Render" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">3D Model</div>
+        <h3>Fortnite Maps Banners 3D Render</h3>
+        <p>These were made for fortnite maps I made. I ended up making a total of $15 from these maps. I had a total of 600 players for one day that month. It would have been good money if I had player retention.</p>
+      </div>
+    </div>
+
+    <!-- 28. Sports Car Render Test -->
+    <div class="portfolio-item" data-type="gallery" data-filter="3d"
+        data-content='["https://i.imgur.com/mWm4JUN.png","https://i.imgur.com/6GgMWQL.jpeg"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/mWm4JUN.png" alt="Sports Car Render Test" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">3D Model</div>
+        <h3>Sports Car Render Test</h3>
+        <p>It was just a quick test, but I really liked how it turned out, hence the phone background.</p>
+      </div>
+    </div>
+
+    <!-- 29. Industry Baby Montage -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/rbujiHeArg4'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/FAWFFj6.png" alt="Industry Baby Montage" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Industry Baby Montage</h3>
+        <p>This edit was very important to my development and this edit is the first time I used a bunch of techniques that get used a lot in later edits.</p>
+      </div>
+    </div>
+
+    <!-- 30. Whos Faster Me or A Storm? -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/RH0_VZTnJI4'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/2dYYYLg.png" alt="Whos Faster Me or A Storm?" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Whos Faster Me or A Storm?</h3>
+        <p>This video was dumb, I tried to make it good, but it was more so me trying to meet a video quota not make good content.</p>
+      </div>
+    </div>
+
+    <!-- 31. Thumbnails for MaxRan1, my fitness channel -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["https://i.imgur.com/gf7OFEI.jpeg","https://i.imgur.com/uyeSrgp.jpeg","https://i.imgur.com/UaVhsgu.jpeg","https://i.imgur.com/SQlkxsh.jpeg"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/UaVhsgu.jpeg" alt="Thumbnails for MaxRan1, my fitness channel" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Thumbnails for MaxRan1, my fitness channel</h3>
+        <p>I loved this channel and am still proud of what I made there. I could do better but at the time it was my best.</p>
+      </div>
+    </div>
+
+    <!-- 32. Connor Mcgregor, Power -->
+    <div class="portfolio-item" data-type="photo" data-filter="design"
+        data-content='Portload/Power.png'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="Portload/Power.png" alt="Connor Mcgregor, Power" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Connor Mcgregor, Power</h3>
+        <p>Most of my UFC designs are made because of the amazing storylines within the sport. This design was made on the same accord.</p>
+      </div>
+    </div>
+
+    <!-- 33. Greatness, Eliud Kipchoge -->
+    <div class="portfolio-item" data-type="photo" data-filter="design"
+        data-content='https://i.imgur.com/usWksqy.jpeg'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/usWksqy.jpeg" alt="Greatness, Eliud Kipchoge" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Greatness, Eliud Kipchoge</h3>
+        <p>I have so much respect for Eliud Kipchoge, he is a great dude, hence why I made this image.</p>
+      </div>
+    </div>
+
+    <!-- 34. Encore Montage -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/yXBEVa4xL4g'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/ilT11ri.png" alt="Encore Montage" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Encore Montage</h3>
+        <p>I made this for spencer, I do not like that song. I think the edit turned out alright though.</p>
+      </div>
+    </div>
+
+    <!-- 35. Max's Stats -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["https://i.imgur.com/Im70MMY.jpeg","https://i.imgur.com/pTwiIXx.jpeg"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/VMO6uts.jpeg" alt="Max's Stats" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Max's Stats</h3>
+        <p>I never even started this project, but I really like the logos I made. Great color scheme and textures. Also cant go wrong with the ghost mask.</p>
+      </div>
+    </div>
+
+    <!-- 36. Rust banners -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["https://i.imgur.com/vrH248i.png","https://i.imgur.com/NRCGGfj.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/Vq33tIa.png" alt="Rust banners" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Rust banners</h3>
+        <p>Made these for a rust channel that I made, I was going to make rust movies but I sucked too much for the stories to be good ever.</p>
+      </div>
+    </div>
+
+    <!-- 37. Thumbnails for my rust movie channel -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["https://i.imgur.com/R5peYDW.jpeg","https://i.imgur.com/X2AwE3K.jpeg","https://i.imgur.com/i57mONb.jpeg"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/co2Ce5d.jpeg" alt="Thumbnails for my rust movie channel" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>Thumbnails for my rust movie channel</h3>
+        <p>These thumbnails weren't horrible. I like them but they really aren't great.</p>
+      </div>
+    </div>
+
+    <!-- 38. The Top P -->
+    <div class="portfolio-item" data-type="photo" data-filter="design"
+        data-content='https://i.imgur.com/glTS88D.jpeg'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/glTS88D.jpeg" alt="The Top P" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>The Top P</h3>
+        <p>This was a license plate I made for portman, still think that this is funny.</p>
+      </div>
+    </div>
+
+    <!-- 39. I stood still for 24 hours -->
+    <div class="portfolio-item" data-type="photo" data-filter="video"
+        data-content='https://i.imgur.com/LicC80Z.jpeg'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/L5WFFNW.jpeg" alt="I stood still for 24 hours" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>I stood still for 24 hours</h3>
+        <p>I tried to make this video but didn't end up finishing it. I stood still for 11 hours, then was tired so I went to bed. I decided that because I didn't finish the challenge to just scrap the video. Waste of time? Maybe.</p>
+      </div>
+    </div>
+
+    <!-- 40. My favorite photo ever -->
+    <div class="portfolio-item" data-type="photo" data-filter="design"
+        data-content='IMG_1285.JPG'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="IMG_1285.JPG" alt="My favorite photo ever" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Photography</div>
+        <h3>My favorite photo ever</h3>
+        <p>Took this on a hike to the 'bamboo forest' with portman on one of the rainest days of the year. Never had a more fun hike.</p>
+      </div>
+    </div>
+
+    <!-- 41. First picture with my first camera -->
+    <div class="portfolio-item" data-type="photo" data-filter="design"
+        data-content='https://i.imgur.com/HdzypAm.jpeg'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/HdzypAm.jpeg" alt="First picture with my first camera" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Photography</div>
+        <h3>First picture with my first camera</h3>
+        <p>For a first picture, I think that this came out great!</p>
+      </div>
+    </div>
+
+    <!-- 42. The MCF Thumbnails -->
+    <div class="portfolio-item" data-type="gallery" data-filter="business"
+        data-content='["https://i.imgur.com/HkPmvJo.png","https://i.imgur.com/3rvo7kS.png","https://i.imgur.com/NZtDPTZ.png","https://i.imgur.com/356khFb.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/IEBo91m.png" alt="The MCF Thumbnails" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Business / Design</div>
+        <h3>The MCF Thumbnails</h3>
+        <p>MCF, Max Cole Finance, was gonna be a channel where me and Cole made finance videos, but we didn't follow through with it.</p>
+      </div>
+    </div>
+
+    <!-- 43. MW19 Thumbnails -->
+    <div class="portfolio-item" data-type="gallery" data-filter="design"
+        data-content='["https://i.imgur.com/eqvRlgQ.jpeg","https://i.imgur.com/pqMAqd6.jpeg","https://i.imgur.com/QR8B7yb.jpeg","https://i.imgur.com/L3qlQfV.png"]'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/qV86SF9.jpeg" alt="MW19 Thumbnails" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>MW19 Thumbnails</h3>
+        <p>A set of thumbnail for a short lived channel where I made commentary videos while playing MW2019.</p>
+      </div>
+    </div>
+
+    <!-- 44. Mac Miller COD cold war edit -->
+    <div class="portfolio-item" data-type="video" data-filter="video"
+        data-content='https://www.youtube.com/embed/qIrbJyud_-A'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/p7V7PKX.png" alt="Mac Miller COD cold war edit" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Video</div>
+        <h3>Mac Miller COD cold war edit</h3>
+        <p>One of the first times I did cinematics inside an edit. I really like this edit to this day.</p>
+      </div>
+    </div>
+
+    <!-- 45. MW22 Thumbnail -->
+    <div class="portfolio-item" data-type="photo" data-filter="design"
+        data-content='https://i.imgur.com/Iq2UK86.jpeg'>
+      <div class="portfolio-item-img">
+        <img src="Portload/Placeholder.png" data-src="https://i.imgur.com/Iq2UK86.jpeg" alt="MW22 Thumbnail" class="lazyload">
+      </div>
+      <div class="portfolio-item-content">
+        <div class="portfolio-item-type">Design</div>
+        <h3>MW22 Thumbnail</h3>
+        <p>This was a fun video to film, but the thumbnail didn't get much love.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1225,47 +1756,5 @@
     });
   });
 </script>
-
-<!-- CSS for the contact form that wasn't included above -->
-<style>
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--text-color);
-  }
-  
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    transition: var(--transition);
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(45, 70, 185, 0.1);
-  }
-  
-  form .btn {
-    margin-top: 10px;
-  }
-
-  @media (min-width: 768px) {
-    form {
-      max-width: 600px;
-    }
-  }
-</style>
 </body>
 </html>
